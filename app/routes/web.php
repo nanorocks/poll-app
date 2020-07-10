@@ -13,10 +13,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get( '/login', 'Auth\Auth0IndexController@login' )->name( 'login' );
+Route::get( '/logout', 'Auth\Auth0IndexController@logout' )->name( 'logout' )->middleware('auth');
+
+Route::get( '/auth0/callback', '\Auth0\Login\Auth0Controller@callback' )->name( 'auth0-callback' );
+
+
+
 
 
 Route::get('/', '\App\Http\Controllers\User\UserController@dashboard')->name('user.dashboard');
 
+Route::get('/result', '\App\Http\Controllers\User\ResultController@show')->name('user.result');
+
+Route::get('/test', '\App\Http\Controllers\User\TestController@test')->name('user.test');
 
 
 Route::get('/admin/login', '\App\Http\Controllers\Admin\AdminController@login')->name('admin.login');
